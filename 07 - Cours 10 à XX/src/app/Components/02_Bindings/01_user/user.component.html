@@ -1,0 +1,24 @@
+<h3>Utilisateur</h3>
+
+<!-- 
+J'utilise le property binding pour envoyer l'image dans ma balise. 
+src : attribut html à modifier
+imageUrl : nom de l'attribut de ma classe
+-->
+<img [src]="imageUrl">
+
+<!-- 
+Appel de l'attribut 'nom' contenu dans la classe
+En utilisant les doubles accolades
+-->
+<p>Nom : {{nom}}</p>
+<p>Prénom : {{prenom}}</p>
+
+<!--Appel de 'Job' en utilisant l'interpolation-->
+<p>Job : {{job}}</p>
+
+<h4> Entrez votre job : </h4>
+<!-- Ajout de la balise [(ngModel)] qui permet ici d'interragir avec notre model -->
+<!-- On lui passe le nom de l'attribut que l'on souhaite pouvoir modifier-->
+<input type="text" name="jobLabel" [(ngModel)] = 'job' />
+

@@ -1,0 +1,10 @@
+<ul>
+  <!-- On itère sur ITEMS, et on créé une variable ITEM à chaque itération -->
+  <!-- ITEMS correspond au nom de notre variable contenant la liste -->
+  <!-- ITEM correspond au nom de la variable contenant la valeur de chaque itération -->
+  @for (item of items; track item; let i = $index) {
+    <li>
+      {{ item.name }}
+    </li>
+}
+</ul>

@@ -1,42 +1,31 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# 0eme partie
+/00 - Cours 00 à 06/node_modules
+/00 - Cours 00 à 06/.vscode
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+# 1ere partie
+/01 - Début du cours sur le routing - Avant TP4/node_modules
+/01 - Début du cours sur le routing - Avant TP4/.vscode
 
-# Node
-/node_modules
-npm-debug.log
-yarn-error.log
+# 2eme partie
+/02 - TP4/node_modules
+/02 - TP4/.vscode
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# 3eme partie
+/03 - Routing Suite - Navigation-1/node_modules
+/03 - Routing Suite - Navigation-1/.vscode
 
-# Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+# 4eme partie
+/04 - Routing Suite - Navigation-2/node_modules
+/04 - Routing Suite - Navigation-2/.vscode
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+# 5eme partie
+/05 - Modeles et Services - 1 - Modeles/node_modules
+/05 - Modeles et Services - 1 - Modeles/.vscode
 
-# System files
-.DS_Store
-Thumbs.db
+# 6eme partie
+/06 - Modeles et Services - 2 - Services/node_modules
+/06 - Modeles et Services - 2 - Services/.angular
+
+# 7eme partie
+/07 - Cours 10 à XX/node_modules
+/07 - Cours 10 à XX/.vscode

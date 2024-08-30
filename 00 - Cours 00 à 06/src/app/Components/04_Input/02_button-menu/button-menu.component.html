@@ -1,0 +1,8 @@
+@for (button of buttons; track button) {
+  <p>
+    <app-generic-alert-button
+      [buttonTitle]="button.buttonTitle"
+      [alertMessage]="button.alertMessage"
+    ></app-generic-alert-button>
+  </p>
+}

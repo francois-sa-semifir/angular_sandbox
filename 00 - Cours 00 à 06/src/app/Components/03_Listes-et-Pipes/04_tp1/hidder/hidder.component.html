@@ -1,0 +1,13 @@
+<!--
+  Création d'un boutton qui appelle la méthode toggle() lorsque l'événement clic est enclenché.
+-->
+<button (click)="toggle()">Afficher</button>
+<!--
+  Création d'un élément qui sera caché par défaut.
+  On appelle directement le composant dans cette balise.
+-->
+@if (!hidden) {
+  <div>
+      <app-user-cards></app-user-cards>
+  </div>
+  }
