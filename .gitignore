@@ -27,5 +27,6 @@
 /06 - Modeles et Services - 2 - Services/.angular
 
 # 7eme partie
-/07 - Demo-test-jest/node_modules
-/07 - Demo-test-jest/.vscode
+/07-Demo-test-jest/coverage
+/07-Demo-test-jest/node_modules
+/07-Demo-test-jest/.vscode

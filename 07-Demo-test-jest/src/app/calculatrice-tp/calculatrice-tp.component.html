@@ -1,0 +1,36 @@
+<span class="container">
+    <h2>TP - 5 </h2>
+    <div class="calculator">
+        <span class="result-container">
+            <p class="input">{{ input }}</p>
+        </span>
+        <span class="digit-container">
+            @for (number of numbers; track number) {
+                <button 
+                    mat-raised-button 
+                    (click)="add(number)" 
+                    color="primary" 
+                >
+                    {{ number }}
+                </button>
+            }
+            <button mat-raised-button (click)="clear()" color="warn">
+                C
+            </button>
+        </span>
+        <span class="digit-container">
+            @for (operator of operators; track operator) {
+                <button
+                    mat-raised-button
+                    (click)="add(operator)"
+                    color="accent"
+                >
+                    {{ operator }}
+                </button>
+            }
+            <button mat-raised-button (click)="calculate()" color="warn">
+                =
+            </button>
+        </span>
+    </div>
+</span>

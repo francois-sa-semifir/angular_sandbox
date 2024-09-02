@@ -1,0 +1,38 @@
+<span class="container">
+    <h2>Demo  - Tests </h2>
+    <div class="calculator">
+        <span class="result-container">
+            <p class="input">{{ input }}</p>
+        </span>
+        <span class="digit-container">
+            @for (number of numbers; track number) {
+                <button 
+                    mat-raised-button 
+                    (click)="add(number)" 
+                    color="primary" 
+                    [id] = "'button' + number"
+                >
+                    {{ number }}
+                </button>
+            }
+            <button mat-raised-button (click)="clear()" color="warn" id="c">
+                C
+            </button>
+        </span>
+        <span class="digit-container">
+            @for (operator of operators; track operator) {
+                <button
+                    mat-raised-button
+                    (click)="add(operator)"
+                    color="accent"
+                    [id] = "'button' + operator"
+                >
+                    {{ operator }}
+                </button>
+            }
+            <button mat-raised-button (click)="calculate()" color="warn" id="equal">
+                =
+            </button>
+        </span>
+    </div>
+</span>
