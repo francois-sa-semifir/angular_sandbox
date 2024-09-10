@@ -1,16 +1,22 @@
-<!-- <div>
-
+<div>
+  <!-- On indique que l'on souhaite réaliser une opération par timezone de la liste 'fuseaux' -->
   @for (fuseau of fuseaux; track fuseau) {
     <p>
-
+    <!-- À chaque itération, on appellera le composant app-horloge -->
+    <!-- On utilise le property binding pour changer la valeur de l'attribut 'time' du composant app-horloge -->
+    <!-- On appelle la méthode setTime() présente dans app-clock-menu, et on lui passe fuseau en paramètre -->
     <app-horloge [time] = 'setTime(fuseau)'></app-horloge>
 
+    <!-- Pour afficher la ville correspondante de manière un peu plus jolie, on utilise '.split()' pour séparer le continent et la ville -->
+    <!-- On affiche ensuite que la ville, ce qui correspond à l'index [1] du tableau ainsi généré. -->
     <span>{{fuseau.split('/')[1]}}</span>
   </p>
-}
-</div> -->
+  }
+</div>
 
-<div>
+<!--AUTRE VERSION DU CODE QUI NE PROVOQUE PAS D'ERREUR DANS LA CONSOLE-->
+
+<!-- <div>
 
   @for (horloge of horloges; track horloge ) {
     <p>
@@ -20,5 +26,5 @@
       <span>{{horloge.fuseau.split('/')[1]}}</span>
   </p>
 }
-</div>
+</div> -->
 

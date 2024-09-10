@@ -1,4 +1,6 @@
+// Import du décorateur 'Component'
 import { Component } from '@angular/core';
+// Directive de routage qui détermine où les composants associés à une route seront affichés.
 import { RouterOutlet } from '@angular/router';
 
 import { PremierComposantComponent } from './Components/01_Composants/01_premier-composant/premier-composant.component';
@@ -23,9 +25,17 @@ import { UserFormComponent } from './Components/05_Formulaires/05_tp3/user-form/
 import { UserFormArrayComponent } from './Components/05_Formulaires/06_user-form-array/user-form-array.component'
 import { DataCoursesComponent } from './Components/06_Output/Output-Liste-Course/data-courses/data-courses.component'
 
+// Appel du décorateur @Component.
+// C'est lui qui nous permet de préciser que notre classe est un composant. 
 @Component({
+  // On lui indiquera le nom que l'on donnera au 'sélecteur'. 
+  // Le sélecteur est le nom de la balise avec laquelle on doit appeler notre composant
+  // Ici, ce serait <app-root></app-root>
   selector: 'app-root',
+  // indique que le composant est autonome et n'a pas besoin d'être inclus dans un NgModule.
   standalone: true,
+  // utilisé pour inclure les dépendances nécessaires à ce composant autonome,
+  // permettant ainsi son fonctionnement correct.
   imports: [
     RouterOutlet,
     PremierComposantComponent,
@@ -50,8 +60,10 @@ import { DataCoursesComponent } from './Components/06_Output/Output-Liste-Course
     UserFormArrayComponent,
     DataCoursesComponent,
   ],
-
+  // Le templateUrl nous permet d'aller récupérer le fichier html correspondant
   templateUrl: './app.component.html',
+  // StyleUrls nous permet de récupérer la feuille de style de notre composant
+  // Il s'agit bien d'un tableau, ce qui implique que l'on puisse avoir plusieurs feuilles de style.
   styleUrl: './app.component.css'
 })
 

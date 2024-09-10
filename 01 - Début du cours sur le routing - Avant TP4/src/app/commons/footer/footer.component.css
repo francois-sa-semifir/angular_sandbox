@@ -1,6 +1,9 @@
 .footer{
+  /* Fixe la footer en haut */
   position: fixed;
-  bottom: 0;
-  z-index: 1000;
   background-color: antiquewhite;
+  /* Aligne la footer en bas de la page */
+  bottom: 0;
+  /* Donne une priorité élevée pour que la navbar reste au-dessus des autres éléments */
+  z-index: 1000;
 }

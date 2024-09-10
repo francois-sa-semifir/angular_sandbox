@@ -6,24 +6,24 @@
     Il ne faut pas oublier que les ID commencent à 1, alors que l'index commence à 0 ! 
     -->
     @if (isOdd) {
-<div class="'container">
-        <div class="background">
-            <!--On appelle ensuite les attributs souhaités comme vu dans la démo.-->
-            <div class="card-header">
-                {{ user.company.name }}
-                <div class="card">
-                <div class="name">
-                    {{ user.name }}
-                </div>
-                <div class="info">
-                    <p>Site : {{ user.website }}</p>
-                    <p>email : {{ user.email }}</p>
-                    <p>Téléphone : {{ user.phone }}</p>
-                </div>
+        <div class="'container">
+            <div class="background">
+                <!--On appelle ensuite les attributs souhaités comme vu dans la démo.-->
+                <div class="card-header">
+                    {{ user.company.name }}
+                    <div class="card">
+                    <div class="name">
+                        {{ user.name }}
+                    </div>
+                    <div class="info">
+                        <p>Site : {{ user.website }}</p>
+                        <p>email : {{ user.email }}</p>
+                        <p>Téléphone : {{ user.phone }}</p>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-}
+    }
 </body>
 }

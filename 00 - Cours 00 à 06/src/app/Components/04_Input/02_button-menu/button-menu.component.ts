@@ -1,22 +1,25 @@
 import { Component } from '@angular/core';
+// Import du bouton générique
 import { GenericAlertButtonComponent } from '../01_generic-alert-button/generic-alert-button.component'
 
 @Component({
   selector: 'app-button-menu',
   standalone: true,
+  //Utilisation de l'import
   imports: [GenericAlertButtonComponent],
   templateUrl: './button-menu.component.html',
   styleUrl: './button-menu.component.css'
 })
 export class ButtonMenuComponent {
+  // Définition de la liste, contenant les attributs des boutons
   buttons: any[] = [
     {
-      buttonTitle: 'Marco',
-      alertMessage: 'Polo !',
+      buttonTitleParent: 'Marco',
+      alertMessageParent: 'Polo !',
     },
     {
-      buttonTitle: 'Toto',
-      alertMessage: 'Tata !',
+      buttonTitleParent: 'Toto',
+      alertMessageParent: 'Tata !',
     }
   ];
 }

@@ -16,7 +16,8 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ProductDetailsComponent {
 
+// Ici pas besoin de fioritures !
+// On veut juste récupérer les datas
   @Input()
   product!: any;
-
 }

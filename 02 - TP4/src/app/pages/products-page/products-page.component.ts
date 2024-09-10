@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// Import de notre composant enfant : `product-list.component.ts`
 import { ProductListComponent } from './product-list/product-list.component'
 
 @Component({
@@ -10,6 +11,7 @@ import { ProductListComponent } from './product-list/product-list.component'
 })
 export class ProductsPageComponent {
 
+  // Déclaration de la liste des films
   films: any[] = [
     {
       id: 1,
@@ -40,6 +42,7 @@ export class ProductsPageComponent {
     }
   ]
 
+  // Déclaration de la liste des albums
   albums: any[] = [
     {
       id: 4,

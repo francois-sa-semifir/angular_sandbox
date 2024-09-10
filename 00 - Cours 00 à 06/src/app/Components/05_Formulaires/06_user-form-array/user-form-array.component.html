@@ -125,9 +125,12 @@
     </div>
   
     <div formArrayName="telephones">
+      <!-- On indique qu'on va vouloir ajouter un champ par contrôle de téléphones-->
       @for (telephone of telephones.controls; track telephone; let i = $index) {
         <div class="field">
           <label for="telephone" class="label">Telephone : </label>
+          <!-- On utilise le property binding pour faire la liaison entre le champ et le téléphone -->
+          <!-- [formControlName]="i" : On lui passe l'index du champs pour qu'il puisse faire le lien -->
           <input
             type="tel"
             id="telephone"
@@ -135,6 +138,7 @@
             placeholder="Telephone"
           />
           
+          <!-- On laisse les conditions  -->
           @if (submitted && telephone.invalid) {
             <span>
               @if (telephone.hasError('minlength')) {
@@ -151,7 +155,9 @@
           }
         </div>
       }
+      <!-- On ajout à la fin 2 boutons, qui vont chercher nos méthodes d'ajout et de suppression de champ -->
       <button type="button" (click)="addTelephone()" class="button">+</button>
+      <!-- On fait attention à bien activer la suppression que si nécessaire ! -->
       @if (telephones.length > 1) {
         <button type="button" (click)="removeTelephone()" class="button">-</button>
       }

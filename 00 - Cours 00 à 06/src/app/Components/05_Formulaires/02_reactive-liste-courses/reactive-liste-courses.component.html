@@ -1,21 +1,24 @@
-@for (article of articles; track article) {
-  <ul >
+<ul >
+    <!-- Affiche tous les articles au fur et à mesure -->
+    @for (article of articles; track article) {
     <li>{{article.designation}} : {{article.prix}} €</li>
+    }
 </ul>
-}
 
-<p>Total : {{totalPrice}} €</p>
+<!-- Appel de notre getter pour afficher le total -->
+<p>Total : {{totalPrice}}€</p>
 
+<!-- Début du formulaire. On déclare le formgroup et l'action à réaliser -->
 <form [formGroup]="article" (ngSubmit)="addArticle()">
     <label>
-        Désignation :  
+        Désignation :
+        <!-- On déclare nos formcontrols dans les input -->
         <input type="text" formControlName="designation" />
     </label>
     <label>
         Prix :
         <input type="number" formControlName="prix" />
     </label>
-    <div>
-        <button type="submit">Ajouter</button>
-    </div>
+    <!-- On oublie pas d'ajouter un bouton submit -->
+    <button type="submit">Ajouter</button>
 </form>

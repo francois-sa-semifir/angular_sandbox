@@ -38,6 +38,7 @@
       </mat-card-content>
     }
     <mat-card-actions>
+      <!-- Ajout d'une vérification pour générer la bonne URI pour le routing -->
       @if (product.synopsis) {
         <button mat-button routerLink="/products/films/{{ product.id }}">
           Details

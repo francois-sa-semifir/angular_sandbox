@@ -2,9 +2,11 @@
     <mat-card class="card">
         <mat-card-header>
             <div mat-card-avatar class="header-image"></div>
+            <!-- Ici, on enlève le troncage -->
             <mat-card-title class="title">
                 {{product.nom}}
             </mat-card-title>
+            <!-- On conserve la gestion des attributs conditionnels-->
             @if (product.artiste) {
             <mat-card-subtitle class="subtitle">{{product.artiste}}</mat-card-subtitle>
             }
@@ -29,6 +31,7 @@
             [alt]="product.nom"
             />
         }
+        <!-- On modifie un peu cette partie pour que l'affichage soit un peu meilleur et conditionnel -->
         @if (product.annee) {
             <mat-card-content>
                 <h3>Année </h3>
@@ -47,6 +50,7 @@
                 <p>{{product.details}}</p>
             </mat-card-content>
         }
+        <!-- On ajoute le bouton qui permet de revenir en arrière-->
         <mat-card-actions>
             <button mat-button routerLink="/products">
                 Retour

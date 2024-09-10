@@ -1,7 +1,7 @@
 @for (article of articles; track article) {
-  <ul >
-    <li>{{article.designation}} : {{article.prix}} €</li>
-</ul>
+    <ul >
+        <li>{{article.designation}} : {{article.prix}} €</li>
+    </ul>
 }
 
 <p>Total : {{totalPrice}} €</p>
@@ -16,6 +16,8 @@
         <input type="number" formControlName="prix" />
     </label>
     <div>
+        <!-- Modification du bouton Sumbit
+        qui sera désactivé si le formulaire n'est pas valide -->
         <button type="submit" [disabled]="!article.valid">Ajouter</button>
     </div>
 </form>

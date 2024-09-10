@@ -1,5 +1,12 @@
+<!-- À compter de maintenant, seul ces composants sont appelés -->
+
+<!-- La navbar : car présente sur toutes les pages -->
 <app-nav-bar></app-nav-bar>
+<!-- Router Outlet ira chercher lui même le composant en fonction de l'URI ! -->
+<!-- Il applera les composants en fonction de la configuration de `app.routes.ts` -->
 <div class="main-content">
+  <!-- Router outlet ira chercher lui même le composant en fonction de l'URI ! -->
   <router-outlet></router-outlet>
 </div>
+<!-- Le footer, car présent sur toutes les pages -->
 <app-footer></app-footer>

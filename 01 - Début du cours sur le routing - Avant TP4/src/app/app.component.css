@@ -1,5 +1,8 @@
 .main-content {
+  /* Espace pour éviter que le contenu soit caché derrière la navbar */
   padding-top: 60px;
+  /* Espace pour éviter que le contenu soit caché derrière le footer */
   padding-bottom: 60px;
+  /* Pour s'assurer que le contenu principal prend tout l'espace disponible */
   min-height: calc(100vh - 120px);
 }

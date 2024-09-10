@@ -1,6 +1,9 @@
 .navbar{
+  /* Fixe la navbar en haut */
   position: fixed;
   background-color: antiquewhite;
+  /* Aligne la navbar en haut de la page */
   top: 0;
+  /* Donne une priorité élevée pour que la navbar reste au-dessus des autres éléments */
   z-index: 1000;
 }

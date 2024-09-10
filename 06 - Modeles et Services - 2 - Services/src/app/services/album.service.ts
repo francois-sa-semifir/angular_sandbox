@@ -1,6 +1,9 @@
+// Idem que tout à l'heure
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+// Sauf qu'ici, on importe notre modèle Album
 import Album from '../models/album.model';
 
 @Injectable({

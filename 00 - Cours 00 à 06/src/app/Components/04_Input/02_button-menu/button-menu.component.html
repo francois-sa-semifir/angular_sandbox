@@ -1,8 +1,10 @@
 @for (button of buttons; track button) {
+  <!-- Appel des [propriétés de l'enfant], 
+  à qui on passe les "propriétés du parent" -->
   <p>
     <app-generic-alert-button
-      [buttonTitle]="button.buttonTitle"
-      [alertMessage]="button.alertMessage"
+      [buttonTitle]="button.buttonTitleParent"
+      [alertMessage]="button.alertMessageParent"
     ></app-generic-alert-button>
   </p>
 }

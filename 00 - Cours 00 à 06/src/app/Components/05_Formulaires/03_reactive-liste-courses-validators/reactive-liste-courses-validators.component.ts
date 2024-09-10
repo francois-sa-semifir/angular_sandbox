@@ -13,9 +13,10 @@ export class ReactiveListeCoursesValidatorsComponent {
 
   article: FormGroup
   articles: any[] = []
-
+  // Modification du constructeur
   constructor() {
     this.article = new FormGroup({
+      // On ajoute les validateurs 'required' en second param
       designation: new FormControl('', Validators.required),
       prix: new FormControl('', Validators.required)
     });

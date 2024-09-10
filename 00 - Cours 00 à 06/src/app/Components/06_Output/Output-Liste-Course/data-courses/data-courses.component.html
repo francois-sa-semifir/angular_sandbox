@@ -1,3 +1,4 @@
+<!-- On délègue tout l'affichage à notre composant parent -->
 @for (course of courses; track course) {
   <div>
     <p>{{course.designation}} : {{course.prix}}</p>
@@ -6,4 +7,8 @@
 <div>
     Total : {{total}} €
 </div>
+<!-- Il appel notre formulaire et on ajoute un event binding -->
+<!-- Lorsque l'événement est émis, alors on ajoute l'article à la liste de course -->
+<!-- Pour rappel, l'événement est émis lorsqu'on clique sur submit -->
+<!-- L'événement retourne un objet, qu'on peut récupérer grâce à $event -->
 <app-form-courses (onAddArticle)="addCourse($event)"></app-form-courses>

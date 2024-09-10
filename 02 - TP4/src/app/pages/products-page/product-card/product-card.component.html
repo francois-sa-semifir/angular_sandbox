@@ -1,10 +1,14 @@
+<!-- NB : Pour utiliser les cartes, pensez à bien importer le module dans `app.module.ts` !!!! -->
+<!-- Génération de la carte à proprement parler -->
 <div class="container">
   <mat-card class="card">
     <mat-card-header>
       <div mat-card-avatar class="header-image"></div>
-
+      <!-- Ici, on fait en sorte que le nom soit tronqué pour pas qu'il dépasse -->
+      <!-- Sinon il risque de déformer les cartes -->
       <mat-card-title class="title">
         {{ product.nom | slice: 0:18 }}
+        <!-- Si le nom est tronqué, alors on ajoute '...' -->
         @if (product.nom.length > 18) {
           <span>...</span>
         }
@@ -17,6 +21,7 @@
       }
     </mat-card-header>
     <hr />
+    <!-- Ajout d'une image par défaut au cas ou il n'y en a pas -->
     @if (!product.img) {
       <img
         class="cover"
@@ -25,6 +30,7 @@
         alt="Licorne"
         />
     }
+    <!-- S'il y a une image, alors on l'affiche -->
     @if (product.img) {
       <img
         class="cover"
@@ -33,12 +39,14 @@
         [alt]="product.nom"
         />
     }
+    <!-- Si synopsis il y a, alors on affiche les 140 premiers caratères uniquement -->
     @if (product.synopsis) {
       <mat-card-content>
         <p>{{ product.synopsis | slice: 0:140 }}...</p>
       </mat-card-content>
     }
     <mat-card-actions>
+      <!-- On génère le boutton, qui pour le moment ne renvoit nul part -->
       <button mat-button>Details</button>
     </mat-card-actions>
   </mat-card>

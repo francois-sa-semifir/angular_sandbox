@@ -1,12 +1,19 @@
-@for (article of articles; track article) {
-  <ul>
-    <li>{{article}}</li>
+<ul>
+  <!-- Utilisation de @for pour afficher la liste -->
+  @for (article of articles; track article) {
+      <!-- Affichera donc chaque article -->
+      <li>{{article}}</li>
+  }
 </ul>
-}
 
+<!-- Création d'un formulaire à la manière 'HTML' -->
+<!-- Utilisation de la directive (ngSubmit)  -->
+<!-- qui est l'équivalent Angular de `onSubmit` -->
 <form (ngSubmit)="addArticle()">
+  <!-- Ajout d'un input, avec un Two Way Binding sur `newArticle` -->
   <input type="text" name="newArticle" [(ngModel)]="newArticle" />
   <div>
+    <!-- Bouton pour valider le formulaire -->
     <button type="submit">Ajouter</button>
   </div>
 </form>

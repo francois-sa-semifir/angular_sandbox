@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './carte-visite.component.css'
 })
 export class CarteVisiteComponent {
+  // Ici, on stocke l'utilisateur dans un attribut 'user'
   user: any = {
     name: "Leanne Graham",
     age: 25,
