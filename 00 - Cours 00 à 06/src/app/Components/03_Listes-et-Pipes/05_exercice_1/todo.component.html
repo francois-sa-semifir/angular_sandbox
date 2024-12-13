@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>📝 Ma Liste de Tâches</h1>
+
+  <!-- Ajout de tâche (two-way binding et event binding) -->
+  <input 
+    type="text" 
+    [(ngModel)]="newTask" 
+    placeholder="Entrez une nouvelle tâche..."
+  />
+  <button (click)="addTask()">Ajouter</button>
+
+  <!-- Affichage conditionnel (avec @if) -->
+  @if (tasks.length === 0) {
+    <p>Aucune tâche à afficher.</p>
+  }
+
+  <!-- Liste des tâches (avec @for) -->
+  <ul>
+    @for (task of tasks; track task ) {
+      <li>
+        <!-- Property binding pour afficher l'état de la tâche -->
+        <input 
+          type="checkbox" 
+          [checked]="task.completed" 
+          (change)="toggleTaskCompletion(task)" 
+        />
+        <span [class.completed]="task.completed">{{ task.title }}</span>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,7 +1,7 @@
 // import du Oninit
 import { Component, OnInit } from '@angular/core';
 // On importe les dépendences
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 // On importe les composants qu'on va utiliser
 import { ProductsPageComponent } from '../products-page/products-page.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -10,7 +10,6 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   selector: 'app-product-page',
   standalone: true,
   imports: [
-    ProductsPageComponent,
     ProductDetailsComponent
   ],
   templateUrl: './product-page.component.html',
@@ -31,7 +30,7 @@ export class ProductPageComponent implements OnInit {
   product!: any;
 
 // On déclare nos dépendances dans le constructeur
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
 // Et on implèmente la méthode `ngOnInit()`
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 // Import du OnInit
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsPageComponent } from '../products-page/products-page.component';
+// Avec le refacto on supprime l'import de `ProductsPageComponent`
 import { ProductDetailsComponent } from './product-details/product-details.component';
 // Import de nos modèles de données
 import Film from '../../models/film.model';
@@ -14,7 +14,6 @@ import { AlbumService } from '../../services/album.service';
   selector: 'app-product-page',
   standalone: true,
   imports: [
-    ProductsPageComponent,
     ProductDetailsComponent
   ],
   templateUrl: './product-page.component.html',

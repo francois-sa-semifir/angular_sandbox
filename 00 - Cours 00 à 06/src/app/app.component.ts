@@ -12,8 +12,8 @@ import { ListeComponent } from './Components/03_Listes-et-Pipes/01_liste/liste.c
 import { MagieComponent } from './Components/03_Listes-et-Pipes/02_magie/magie.component'
 import { ListeFiltreComponent } from './Components/03_Listes-et-Pipes/03_liste-filtre/liste-filtre.component'
 import { HidderComponent } from './Components/03_Listes-et-Pipes/04_tp1/hidder/hidder.component'
-import { UserCardsComponent } from './Components/03_Listes-et-Pipes/04_tp1/user-cards/user-cards.component'
-import { ShowDateComponent } from './Components/03_Listes-et-Pipes/05_show-date/show-date.component'
+import { TodoComponent } from './Components/03_Listes-et-Pipes/05_exercice_1/todo.component'
+import { ShowDateComponent } from './Components/03_Listes-et-Pipes/06_show-date/show-date.component'
 import { GenericAlertButtonComponent } from './Components/04_Input/01_generic-alert-button/generic-alert-button.component'
 import { ButtonMenuComponent } from './Components/04_Input/02_button-menu/button-menu.component'
 import { ClockMenuComponent } from './Components/04_Input/03_tp2/clock-menu/clock-menu.component'
@@ -23,7 +23,8 @@ import { ReactiveListeCoursesValidatorsComponent } from './Components/05_Formula
 import { FormbuilderListeCoursesComponent } from './Components/05_Formulaires/04_formbuilder-liste-courses/formbuilder-liste-courses.component'
 import { UserFormComponent } from './Components/05_Formulaires/05_tp3/user-form/user-form.component'
 import { UserFormArrayComponent } from './Components/05_Formulaires/06_user-form-array/user-form-array.component'
-import { DataCoursesComponent } from './Components/06_Output/Output-Liste-Course/data-courses/data-courses.component'
+import { DataCoursesComponent } from './Components/06_Output/01_Output-Liste-Course/data-courses/data-courses.component'
+import { StudentMainComponent } from './Components/06_Output/02_exercice_2/student-main/student-main.component'
 
 // Appel du décorateur @Component.
 // C'est lui qui nous permet de préciser que notre classe est un composant. 
@@ -47,7 +48,7 @@ import { DataCoursesComponent } from './Components/06_Output/Output-Liste-Course
     MagieComponent,
     ListeFiltreComponent,
     HidderComponent,
-    UserCardsComponent,
+    TodoComponent,
     ShowDateComponent,
     GenericAlertButtonComponent,
     ButtonMenuComponent,
@@ -59,6 +60,7 @@ import { DataCoursesComponent } from './Components/06_Output/Output-Liste-Course
     UserFormComponent,
     UserFormArrayComponent,
     DataCoursesComponent,
+    StudentMainComponent
   ],
   // Le templateUrl nous permet d'aller récupérer le fichier html correspondant
   templateUrl: './app.component.html',

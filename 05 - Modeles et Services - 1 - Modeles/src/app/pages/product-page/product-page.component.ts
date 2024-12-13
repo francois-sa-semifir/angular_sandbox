@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProductsPageComponent } from '../products-page/products-page.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
@@ -7,7 +7,6 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
   selector: 'app-product-page',
   standalone: true,
   imports: [
-    ProductsPageComponent,
     ProductDetailsComponent
   ],
   templateUrl: './product-page.component.html',
@@ -21,7 +20,7 @@ export class ProductPageComponent implements OnInit {
   
     product!: any;
   
-    constructor(private router: Router, private route: ActivatedRoute) {}
+    constructor(private route: ActivatedRoute) {}
   
     ngOnInit(): void {
       const id = this.route.snapshot.paramMap.get('id');

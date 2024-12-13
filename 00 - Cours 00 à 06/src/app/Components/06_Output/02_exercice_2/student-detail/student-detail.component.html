@@ -1,0 +1,7 @@
+<h2>📘 Détail de l'étudiant</h2>
+
+@if (student) {
+  <p><strong>Nom :</strong> {{ student.name | uppercase }}</p>
+  <p><strong>Âge :</strong> {{ student.age }}</p>
+  <p><strong>Date d'inscription :</strong> {{ student.enrollmentDate | date: 'dd/MM/yyyy' }}</p>
+}
