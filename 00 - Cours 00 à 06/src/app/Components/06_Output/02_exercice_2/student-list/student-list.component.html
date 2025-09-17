@@ -5,7 +5,7 @@
 }
 
 <ul>
-  @for (student of students; track student.name) {
+  @for (student of students; track $index) {
     <li>
       <strong>{{ student.name | uppercase }}</strong> - 
       {{ student.age }} ans - 

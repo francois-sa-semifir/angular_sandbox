@@ -24,6 +24,7 @@
 <div class="form">
   <!-- Ajout du formulaire et déclaration du groupe + submit -->
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    
     <div class="field">
       <label for="nom" class="label">Nom : </label>
       <input
@@ -40,7 +41,7 @@
               * Nom doit contenir au minimum 2 caractères
             </span>
           }
-          @if (!form['nom'].value) {
+          @else if (!form['nom'].value) {
             <span>
               * Nom obligatoire
             </span>

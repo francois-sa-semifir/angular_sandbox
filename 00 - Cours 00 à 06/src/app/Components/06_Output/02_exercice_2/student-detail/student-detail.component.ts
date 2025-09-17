@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import type { Student } from '../student-list/student-list.component';
 
 @Component({
   selector: 'student-detail',
@@ -11,5 +12,5 @@ import { CommonModule } from '@angular/common';
 export class StudentDetailComponent {
   
   // Reçoit les détails de l'étudiant depuis le parent (StudentMainComponent)
-  @Input() student: { name: string, age: number, enrollmentDate: Date } | null = null;
+  @Input() student: Student | null = null;
 }
