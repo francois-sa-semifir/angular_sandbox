@@ -36,5 +36,17 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.5.2"
+  },
+  "overrides": {
+    "vite": "5.4.20",
+    "esbuild": "0.25.9",
+    "http-proxy-middleware": "3.0.5",
+    "webpack-dev-server": "5.2.1",
+    "on-headers": "1.1.0",
+    "form-data": "4.0.4",
+    "tmp": "0.2.4"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   }
 }
