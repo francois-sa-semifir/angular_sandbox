@@ -38,7 +38,7 @@
     "typescript": "~5.5.2"
   },
   "overrides": {
-    "vite": "5.4.20",
+    "vite": "5.4.21",
     "esbuild": "0.25.9",
     "http-proxy-middleware": "3.0.5",
     "webpack-dev-server": "5.2.1",

@@ -3,3 +3,8 @@
   width: 100vw;
   justify-content: space-evenly;
 }
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
