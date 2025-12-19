@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-calculatrice',
-  standalone: true,
-  imports: [MatButtonModule],
-  templateUrl: './calculatrice.component.html',
-  styleUrl: './calculatrice.component.css'
+    selector: 'app-calculatrice',
+    imports: [MatButtonModule],
+    templateUrl: './calculatrice.component.html',
+    styleUrl: './calculatrice.component.css'
 })
 export class CalculatriceComponent {
 
