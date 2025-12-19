@@ -11,13 +11,12 @@ import { FilmService } from '../../services/film.service';
 import { AlbumService } from '../../services/album.service';
 
 @Component({
-  selector: 'app-product-page',
-  standalone: true,
-  imports: [
-    ProductDetailsComponent
-  ],
-  templateUrl: './product-page.component.html',
-  styleUrl: './product-page.component.css'
+    selector: 'app-product-page',
+    imports: [
+        ProductDetailsComponent
+    ],
+    templateUrl: './product-page.component.html',
+    styleUrl: './product-page.component.css'
 })
 export class ProductPageComponent implements OnInit {
 

@@ -9,11 +9,10 @@ import { FilmService } from '../../services/film.service';
 import { AlbumService } from '../../services/album.service';
 
 @Component({
-  selector: 'app-products-page',
-  standalone: true,
-  imports: [ProductListComponent],
-  templateUrl: './products-page.component.html',
-  styleUrl: './products-page.component.css'
+    selector: 'app-products-page',
+    imports: [ProductListComponent],
+    templateUrl: './products-page.component.html',
+    styleUrl: './products-page.component.css'
 })
 // Implémentation du OnInit
 export class ProductsPageComponent implements OnInit{

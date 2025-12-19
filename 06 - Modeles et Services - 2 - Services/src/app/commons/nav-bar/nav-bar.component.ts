@@ -5,15 +5,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-nav-bar',
-  standalone: true,
-  imports: [
-    RouterLink,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule],
-  templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+    selector: 'app-nav-bar',
+    imports: [
+        RouterLink,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule
+    ],
+    templateUrl: './nav-bar.component.html',
+    styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
 

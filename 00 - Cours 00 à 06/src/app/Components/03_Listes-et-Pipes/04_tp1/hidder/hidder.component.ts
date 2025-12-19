@@ -4,7 +4,6 @@ import { UserCardsComponent } from "../user-cards/user-cards.component";
 
 @Component({
     selector: 'app-hidder',
-    standalone: true,
     // Appel de la classe de l'enfant
     imports: [UserCardsComponent],
     templateUrl: './hidder.component.html',

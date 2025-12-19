@@ -3,11 +3,10 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-formbuilder-liste-courses',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './formbuilder-liste-courses.component.html',
-  styleUrl: './formbuilder-liste-courses.component.css'
+    selector: 'app-formbuilder-liste-courses',
+    imports: [ReactiveFormsModule],
+    templateUrl: './formbuilder-liste-courses.component.html',
+    styleUrl: './formbuilder-liste-courses.component.css'
 })
 
 export class FormbuilderListeCoursesComponent {

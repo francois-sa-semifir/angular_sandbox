@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
 @Component({
-  selector: 'app-user-form-array',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './user-form-array.component.html',
-  styleUrl: './user-form-array.component.css'
+    selector: 'app-user-form-array',
+    imports: [ReactiveFormsModule],
+    templateUrl: './user-form-array.component.html',
+    styleUrl: './user-form-array.component.css'
 })
 export class UserFormArrayComponent {
 

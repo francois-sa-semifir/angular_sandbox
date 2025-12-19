@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 export type Student = { name: string; age: number; enrollmentDate: Date };
 
 @Component({
-  selector: 'app-student-list',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './student-list.component.html',
-  styleUrls: ['./student-list.component.css']
+    selector: 'app-student-list',
+    imports: [CommonModule],
+    templateUrl: './student-list.component.html',
+    styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent {
   // Liste des étudiants reçue depuis le parent (StudentMainComponent)

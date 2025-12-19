@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-horloge',
-  standalone: true,
-  imports: [],
-  templateUrl: './horloge.component.html',
-  styleUrl: './horloge.component.css'
+    selector: 'app-horloge',
+    imports: [],
+    templateUrl: './horloge.component.html',
+    styleUrl: './horloge.component.css'
 })
 export class HorlogeComponent {
   // Cette classe n'est chargée QUE de l'affichage de l'heure.

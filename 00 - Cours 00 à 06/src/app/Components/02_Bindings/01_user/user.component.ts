@@ -4,13 +4,12 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-user',
-  standalone: true,
-  // -- PARTIE SUR LE TWO WAY BINDING --
-  // Utilisation du FormsModule
-  imports: [FormsModule],
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.css'
+    selector: 'app-user',
+    // -- PARTIE SUR LE TWO WAY BINDING --
+    // Utilisation du FormsModule
+    imports: [FormsModule],
+    templateUrl: './user.component.html',
+    styleUrl: './user.component.css'
 })
 export class UserComponent {
   // -- PARTIE SUR LE ONE WAY BINDING --

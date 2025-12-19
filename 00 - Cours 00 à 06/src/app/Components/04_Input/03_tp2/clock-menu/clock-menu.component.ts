@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { HorlogeComponent } from '../horloge/horloge.component'
 
 @Component({
-  selector: 'app-clock-menu',
-  standalone: true,
-  imports: [HorlogeComponent],
-  templateUrl: './clock-menu.component.html',
-  styleUrl: './clock-menu.component.css'
+    selector: 'app-clock-menu',
+    imports: [HorlogeComponent],
+    templateUrl: './clock-menu.component.html',
+    styleUrl: './clock-menu.component.css'
 })
 // Liste des timezones disponibles
 // On pourra toujours en ajouter autant qu'on le souhaite sans avoir à modifier notre composant.

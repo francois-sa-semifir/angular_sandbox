@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-liste-courses',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './liste-courses.component.html',
-  styleUrl: './liste-courses.component.css'
+    selector: 'app-liste-courses',
+    imports: [FormsModule],
+    templateUrl: './liste-courses.component.html',
+    styleUrl: './liste-courses.component.css'
 })
 export class ListeCoursesComponent {
   // Création d'une liste d'articles vides.

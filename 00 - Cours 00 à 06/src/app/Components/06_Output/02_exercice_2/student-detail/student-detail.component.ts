@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import type { Student } from '../student-list/student-list.component';
 
 @Component({
-  selector: 'student-detail',
-  standalone: true,
-  imports: [CommonModule],  
-  templateUrl: './student-detail.component.html',
-  styleUrls: ['./student-detail.component.css']
+    selector: 'student-detail',
+    imports: [CommonModule],
+    templateUrl: './student-detail.component.html',
+    styleUrls: ['./student-detail.component.css']
 })
 export class StudentDetailComponent {
   

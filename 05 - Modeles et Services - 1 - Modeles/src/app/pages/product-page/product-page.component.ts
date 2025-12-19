@@ -4,13 +4,12 @@ import { ProductsPageComponent } from '../products-page/products-page.component'
 import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @Component({
-  selector: 'app-product-page',
-  standalone: true,
-  imports: [
-    ProductDetailsComponent
-  ],
-  templateUrl: './product-page.component.html',
-  styleUrl: './product-page.component.css'
+    selector: 'app-product-page',
+    imports: [
+        ProductDetailsComponent
+    ],
+    templateUrl: './product-page.component.html',
+    styleUrl: './product-page.component.css'
 })
 export class ProductPageComponent implements OnInit {
     films = new ProductsPageComponent().films;

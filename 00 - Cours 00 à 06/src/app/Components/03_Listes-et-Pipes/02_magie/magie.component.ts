@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-magie',
-  standalone: true,
-  imports: [],
-  templateUrl: './magie.component.html',
-  styleUrl: './magie.component.css'
+    selector: 'app-magie',
+    imports: [],
+    templateUrl: './magie.component.html',
+    styleUrl: './magie.component.css'
 })
 export class MagieComponent {
   // Déclaration d'un booléen avec une valeur par défaut à true

@@ -2,11 +2,10 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-form-courses',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './form-courses.component.html',
-  styleUrl: './form-courses.component.css'
+    selector: 'app-form-courses',
+    imports: [ReactiveFormsModule],
+    templateUrl: './form-courses.component.html',
+    styleUrl: './form-courses.component.css'
 })
 export class FormCoursesComponent {
 

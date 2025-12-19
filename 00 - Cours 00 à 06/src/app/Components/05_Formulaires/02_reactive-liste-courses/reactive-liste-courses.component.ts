@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-reactive-liste-courses',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './reactive-liste-courses.component.html',
-  styleUrl: './reactive-liste-courses.component.css'
+    selector: 'app-reactive-liste-courses',
+    imports: [ReactiveFormsModule],
+    templateUrl: './reactive-liste-courses.component.html',
+    styleUrl: './reactive-liste-courses.component.css'
 })
 export class ReactiveListeCoursesComponent {
 

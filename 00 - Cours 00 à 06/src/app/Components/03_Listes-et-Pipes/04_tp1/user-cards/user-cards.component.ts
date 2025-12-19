@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-user-cards',
-  standalone: true,
-  imports: [],
-  templateUrl: './user-cards.component.html',
-  styleUrl: './user-cards.component.css'
+    selector: 'app-user-cards',
+    imports: [],
+    templateUrl: './user-cards.component.html',
+    styleUrl: './user-cards.component.css'
 })
 export class UserCardsComponent {
   // Par souci de simplicité, on a décidé de ne pas utiliser le service pour récupérer les données

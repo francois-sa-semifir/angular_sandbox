@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-liste',
-  standalone: true,
-  imports: [],
-  templateUrl: './liste.component.html',
-  styleUrl: './liste.component.css'
+    selector: 'app-liste',
+    imports: [],
+    templateUrl: './liste.component.html',
+    styleUrl: './liste.component.css'
 })
 export class ListeComponent {
   // On déclare ici notre liste de prénoms

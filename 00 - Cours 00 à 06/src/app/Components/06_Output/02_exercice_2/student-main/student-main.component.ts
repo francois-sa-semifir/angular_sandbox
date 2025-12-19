@@ -6,11 +6,10 @@ import { StudentDetailComponent } from '../student-detail/student-detail.compone
 type Student = { name: string; age: number; enrollmentDate: Date };
 
 @Component({
-  selector: 'app-student-main',
-  standalone: true,
-  imports: [ReactiveFormsModule, StudentListComponent, StudentDetailComponent],
-  templateUrl: './student-main.component.html',
-  styleUrls: ['./student-main.component.css']
+    selector: 'app-student-main',
+    imports: [ReactiveFormsModule, StudentListComponent, StudentDetailComponent],
+    templateUrl: './student-main.component.html',
+    styleUrls: ['./student-main.component.css']
 })
 export class StudentMainComponent {
   studentForm: FormGroup;

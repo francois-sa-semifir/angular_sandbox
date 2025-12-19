@@ -3,11 +3,10 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 
 
 @Component({
-  selector: 'app-reactive-liste-courses-validators',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './reactive-liste-courses-validators.component.html',
-  styleUrl: './reactive-liste-courses-validators.component.css'
+    selector: 'app-reactive-liste-courses-validators',
+    imports: [ReactiveFormsModule],
+    templateUrl: './reactive-liste-courses-validators.component.html',
+    styleUrl: './reactive-liste-courses-validators.component.css'
 })
 export class ReactiveListeCoursesValidatorsComponent {
 

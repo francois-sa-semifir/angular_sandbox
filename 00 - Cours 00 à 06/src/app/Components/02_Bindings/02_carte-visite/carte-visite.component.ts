@@ -3,12 +3,11 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-carte-visite',
-  standalone: true,
-  // à déclarer pour la 2eme partie de la démo
-  imports: [FormsModule],
-  templateUrl: './carte-visite.component.html',
-  styleUrl: './carte-visite.component.css'
+    selector: 'app-carte-visite',
+    // à déclarer pour la 2eme partie de la démo
+    imports: [FormsModule],
+    templateUrl: './carte-visite.component.html',
+    styleUrl: './carte-visite.component.css'
 })
 export class CarteVisiteComponent {
   // Ici, on stocke l'utilisateur dans un attribut 'user'
