@@ -1,56 +1,60 @@
 <div class="container">
-    <mat-card class="card">
-        <mat-card-header>
-            <div mat-card-avatar class="header-image"></div>
-            <mat-card-title class="title">
-                {{product.nom}}
-            </mat-card-title>
-            @if (product.artiste) {
-            <mat-card-subtitle class="subtitle">{{product.artiste}}</mat-card-subtitle>
+    @if (product) {
+        <mat-card class="card">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title class="title">
+                    {{product.nom}}
+                </mat-card-title>
+                @if (product.artiste) {
+                <mat-card-subtitle class="subtitle">{{product.artiste}}</mat-card-subtitle>
+                }
+                @if (product.real) {
+                <mat-card-subtitle class="subtitle">{{product.real}}</mat-card-subtitle>
+                }
+            </mat-card-header>
+            <hr />
+            @if (!product.img) {
+                <img
+                class="cover"
+                mat-card-image
+                src="https://www.le-monde-du-stickers.fr/17138-large_default/sticker-licorne-cool.jpg"
+                alt="Licorne"
+                />
             }
-            @if (product.real) {
-            <mat-card-subtitle class="subtitle">{{product.real}}</mat-card-subtitle>
+            @if (product.img) {
+                <img
+                class="cover"
+                mat-card-image
+                [src]="product.img"
+                [alt]="product.nom"
+                />
             }
-        </mat-card-header>
-        <hr />
-        @if (!product.img) {
-            <img
-            class="cover"
-            mat-card-image
-            src="https://www.le-monde-du-stickers.fr/17138-large_default/sticker-licorne-cool.jpg"
-            alt="Licorne"
-            />
-        }
-        @if (product.img) {
-            <img
-            class="cover"
-            mat-card-image
-            [src]="product.img"
-            [alt]="product.nom"
-            />
-        }
-        @if (product.annee) {
-            <mat-card-content>
-                <h3>Année </h3>
-                <p>{{product.annee}}</p>
-            </mat-card-content>
-        }
-        @if (product.synopsis) {
-            <mat-card-content>
-                <h3>Synopsis </h3>
-                <p>{{product.synopsis}}</p>
-            </mat-card-content>
-        }
-        @if (product.details) {
-            <mat-card-content>
-                <h3>Détails </h3>
-                <p>{{product.details}}</p>
-            </mat-card-content>
-        }
-        <mat-card-actions>
-            <button mat-button routerLink="/products">
-                Retour
-            </button>
-        </mat-card-actions>
-    </mat-card>
+            @if (product.annee) {
+                <mat-card-content>
+                    <h3>Année </h3>
+                    <p>{{product.annee}}</p>
+                </mat-card-content>
+            }
+            @if (product.synopsis) {
+                <mat-card-content>
+                    <h3>Synopsis </h3>
+                    <p>{{product.synopsis}}</p>
+                </mat-card-content>
+            }
+            @if (product.details) {
+                <mat-card-content>
+                    <h3>Détails </h3>
+                    <p>{{product.details}}</p>
+                </mat-card-content>
+            }
+            <mat-card-actions>
+                <button mat-button routerLink="/products">
+                    Retour
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    } @else {
+        <p>Chargement du produit...</p>
+    }
 </div>
