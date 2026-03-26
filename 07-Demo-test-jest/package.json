@@ -11,24 +11,24 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^19.2.18",
+    "@angular/animations": "^19.2.0",
     "@angular/cdk": "^19.2.0",
-    "@angular/common": "^19.2.18",
-    "@angular/compiler": "^19.2.18",
-    "@angular/core": "^19.2.18",
-    "@angular/forms": "^19.2.18",
+    "@angular/common": "^19.2.0",
+    "@angular/compiler": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "@angular/forms": "^19.2.0",
     "@angular/material": "^19.2.0",
-    "@angular/platform-browser": "^19.2.18",
-    "@angular/platform-browser-dynamic": "^19.2.18",
-    "@angular/router": "^19.2.18",
+    "@angular/platform-browser": "^19.2.0",
+    "@angular/platform-browser-dynamic": "^19.2.0",
+    "@angular/router": "^19.2.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular/build": "^19.2.22",
-    "@angular/cli": "^19.2.22",
-    "@angular/compiler-cli": "^19.2.18",
+    "@angular/build": "^19.2.0",
+    "@angular/cli": "^19.2.0",
+    "@angular/compiler-cli": "^19.2.0",
     "@jest/globals": "^29.7.0",
     "@types/jasmine": "~5.1.0",
     "@types/jest": "^29.5.14",
@@ -39,12 +39,18 @@
     "karma-jasmine-html-reporter": "^2.2.0",
     "typescript": "~5.5.2"
   },
-  "overrides": {
-    "tar": ">=7.5.8",
-    "serialize-javascript": ">=6.0.2",
+    "overrides": {
+    "ajv": ">=6.14.0",
+    "flatted": ">=3.4.2",
+    "minimatch": ">=3.1.3",
+    "picomatch": ">=4.0.4",
+    "serialize-javascript": ">=7.0.4",
+    "tar": ">=7.5.11",
+    "undici": ">=7.24.0",
     "@tootallnate/once": ">=3.0.1"
   },
   "engines": {
     "node": ">=20.19.0"
   }
 }
+
