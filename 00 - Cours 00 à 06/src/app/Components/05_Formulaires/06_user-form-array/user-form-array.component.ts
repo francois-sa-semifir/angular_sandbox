@@ -1,74 +1,100 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+// Import des outils Angular
+import { Component, signal } from '@angular/core';
+// Import des APIs Signal Forms d'Angular 22
+import { form, FormField, required, email, minLength } from '@angular/forms/signals';
+
+// Interface typée pour un utilisateur avec un tableau de téléphones
+// En Signal Forms, un tableau dans le modèle est un simple tableau TypeScript
+// Plus besoin de FormArray !
+interface User {
+  nom: string;
+  prenom: string;
+  email: string;
+  telephones: string[];
+  entreprise: string;
+}
 
 @Component({
     selector: 'app-user-form-array',
-    imports: [ReactiveFormsModule],
+    imports: [FormField],
     templateUrl: './user-form-array.component.html',
     styleUrl: './user-form-array.component.css'
 })
 export class UserFormArrayComponent {
 
-  users: any[] = [
+  // Données existantes
+  users: User[] = [
     {
       nom: 'Nareff',
       prenom: 'Paul',
       email: 'paul.nareff@gmail.com',
-      telephone: '0123456789',
+      telephones: ['0123456789'],
       entreprise: 'World Company',
     },
   ];
 
-  userForm: FormGroup;
+  // Signal = modèle de données réactif
+  // Le tableau telephones est un simple string[] dans le modèle
+  userModel = signal<User>({
+    nom: '',
+    prenom: '',
+    email: '',
+    telephones: [''],
+    entreprise: '',
+  });
 
-  submitted: boolean = false;
+  // form() avec schéma de validation
+  // Note : la validation des éléments de tableau se fait
+  // en itérant sur les éléments du schéma
+  userForm = form(this.userModel, (schemaPath) => {
+    required(schemaPath.nom, { message: 'Nom obligatoire' });
+    minLength(schemaPath.nom, 2, { message: 'Nom doit contenir au minimum 2 caractères' });
+    required(schemaPath.prenom, { message: 'Prénom obligatoire' });
+    minLength(schemaPath.prenom, 2, { message: 'Prénom doit contenir au minimum 2 caractères' });
+    required(schemaPath.email, { message: 'Email obligatoire' });
+    email(schemaPath.email, { message: 'Email invalide' });
+    required(schemaPath.entreprise, { message: 'Entreprise obligatoire' });
+    minLength(schemaPath.entreprise, 2, { message: 'Entreprise doit contenir au minimum 2 caractères' });
+  });
 
-  constructor(private formBuilder: FormBuilder) {
-    this.userForm = this.formBuilder.group({
-      nom: ['', [Validators.minLength(2), Validators.required]],
-      prenom: ['', [Validators.minLength(2), Validators.required]],
-      email: ['', [Validators.email, Validators.required]],
-      // Attribut telephone avec un validateur 'required' et une longueur minimale de 10
-      // On déclare ici un tableau de FormArray
-      // On y ajoute les controles pour le numéro de téléphone
-      telephones: this.formBuilder.array([
-        this.formBuilder.control('', [Validators.minLength(10), Validators.required])
-      ]),
-      entreprise: ['', [Validators.minLength(2), Validators.required]],
-    });
-  }
+  // Suivi de soumission
+  submitted = false;
 
+  // Ajoute l'utilisateur
   private addUser(): void {
-    this.users.push(this.userForm.value);
-    this.userForm.reset();
+    this.users.push({ ...this.userModel() });
+    this.userModel.set({ nom: '', prenom: '', email: '', telephones: [''], entreprise: '' });
     this.submitted = false;
   }
 
+  // Gestion de la soumission
   public onSubmit(): void {
-    this.submitted = true
-    if (this.userForm.valid) {
+    this.submitted = true;
+    if (this.userForm().valid()) {
       this.addUser();
     }
-    console.log(this.users)
+    console.log(this.users);
   }
 
-  public get form() {
-    return this.userForm.controls;
-  }
-
-  // Getter pour accéder à la liste des téléphones
-  public get telephones(): FormArray {
-    return this.userForm.get('telephones') as FormArray;
-  }
-  // Méthode pour ajouter un contrôle de téléphone
-  // La méthode va push un contrôle de téléphone dans le tableau 'téléphones'
+  // Ajoute un champ téléphone au tableau
+  // En Signal Forms, on manipule directement le signal !
+  // Plus besoin de FormArray.push(fb.control(...))
   public addTelephone(): void {
-    this.telephones.push(this.formBuilder.control('', [Validators.minLength(10), Validators.required]));
+    const current = this.userModel();
+    this.userModel.set({
+      ...current,
+      telephones: [...current.telephones, '']
+    });
   }
-  // Méthode pour supprimer un contrôle de téléphone
-  // On retire le dernier élément de l'index
-  // NB : le compte commence à 1, l'index commence à 0
+
+  // Supprime le dernier champ téléphone
   public removeTelephone(): void {
-    this.telephones.removeAt(this.telephones.length - 1);
+    const current = this.userModel();
+    if (current.telephones.length > 1) {
+      this.userModel.set({
+        ...current,
+        telephones: current.telephones.slice(0, -1)
+      });
+    }
   }
 }

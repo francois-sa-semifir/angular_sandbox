@@ -1,15 +1,30 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/forms';
+// Import des outils Angular
+import { Component, signal } from '@angular/core';
+// Import des APIs Signal Forms d'Angular 22
+// form() : crée le formulaire signal
+// FormField : directive [formField]
+// required, email, minLength : validateurs intégrés
+import { form, FormField, required, email, minLength } from '@angular/forms/signals';
+
+// Interface typée pour un utilisateur — modèle fort
+interface User {
+  nom: string;
+  prenom: string;
+  email: string;
+  telephone: string;
+  entreprise: string;
+}
 
 @Component({
     selector: 'app-user-form',
-    imports: [ReactiveFormsModule],
+    // FormField remplace ReactiveFormsModule
+    imports: [FormField],
     templateUrl: './user-form.component.html',
     styleUrl: './user-form.component.css'
 })
 export class UserFormComponent {
-  // Déclaration du tableau utilisateurs, avec un utilisateur exemple.
-  users: any[] = [
+  // Déclaration du tableau utilisateurs, avec un utilisateur exemple
+  users: User[] = [
     {
       nom: 'Nareff',
       prenom: 'Paul',
@@ -19,47 +34,54 @@ export class UserFormComponent {
     },
   ];
 
-  // Déclaration du formulaire
-  userForm: FormGroup;
+  // Signal = modèle de données réactif
+  userModel = signal<User>({
+    nom: '',
+    prenom: '',
+    email: '',
+    telephone: '',
+    entreprise: '',
+  });
 
-  // Définition d'un booléen avec une valeur par défaut à false
-  // Servira à s'assurer de la soumission du formulaire
-  submitted: boolean = false;
+  // form() avec schéma de validation complet
+  // Comparé au FormBuilder :
+  //   - Plus de constructeur avec injection de FormBuilder
+  //   - Plus de tableau [valeur, [validateurs]] obscur
+  //   - Validation centralisée, lisible, avec messages explicites
+  userForm = form(this.userModel, (schemaPath) => {
+    // Nom : obligatoire + minimum 2 caractères
+    required(schemaPath.nom, { message: 'Nom obligatoire' });
+    minLength(schemaPath.nom, 2, { message: 'Nom doit contenir au minimum 2 caractères' });
+    // Prénom : obligatoire + minimum 2 caractères
+    required(schemaPath.prenom, { message: 'Prénom obligatoire' });
+    minLength(schemaPath.prenom, 2, { message: 'Prénom doit contenir au minimum 2 caractères' });
+    // Email : obligatoire + format email
+    required(schemaPath.email, { message: 'Email obligatoire' });
+    email(schemaPath.email, { message: 'Email invalide' });
+    // Téléphone : obligatoire + minimum 10 caractères
+    required(schemaPath.telephone, { message: 'Téléphone obligatoire' });
+    minLength(schemaPath.telephone, 10, { message: 'Téléphone doit contenir au moins 10 chiffres' });
+    // Entreprise : obligatoire + minimum 2 caractères
+    required(schemaPath.entreprise, { message: 'Entreprise obligatoire' });
+    minLength(schemaPath.entreprise, 2, { message: 'Entreprise doit contenir au minimum 2 caractères' });
+  });
 
-  // Ajout du formulaire dans le constructeur
-  constructor(private formBuilder: FormBuilder) {
-    this.userForm = this.formBuilder.group({
-      // Attribut nom avec un validateur 'required' et une longueur minimale de 2
-      nom: ['', [Validators.minLength(2), Validators.required]],
-      // Attribut prenom avec un validateur 'required' et une longueur minimale de 2
-      prenom: ['', [Validators.minLength(2), Validators.required]],
-      // Attribut email avec un validateur de type email
-      email: ['', [Validators.email, Validators.required]],
-      // Attribut telephone avec un validateur 'required' et une longueur minimale de 10
-      telephone: ['', [Validators.minLength(10), Validators.required]],
-      // Attribut entreprise avec un validateur 'required' et une longueur minimale de 2
-      entreprise: ['', [Validators.minLength(2), Validators.required]],
-    });
-  }
+  // Booléen pour le suivi de soumission
+  submitted = false;
 
-  // Méthode pour ajotuer un utilisateur
-  // Elle est privée et sera appellée par la méthode onSubmit
+  // Méthode privée pour ajouter l'utilisateur
   private addUser(): void {
-    this.users.push(this.userForm.value);
-    this.userForm.reset();
+    this.users.push({ ...this.userModel() });
+    this.userModel.set({ nom: '', prenom: '', email: '', telephone: '', entreprise: '' });
     this.submitted = false;
   }
 
-  // Méthode `onSubmit()` pour gérer la soumission du formulaire
+  // Gestion de la soumission
   public onSubmit(): void {
-    this.submitted = true
-    if (this.userForm.valid) {
+    this.submitted = true;
+    // valid() est un signal réactif, remplace this.userForm.valid
+    if (this.userForm().valid()) {
       this.addUser();
     }
-  }
-
-  // Getter pour accéder aux contrôles du formulaire
-  public get form() {
-    return this.userForm.controls;
   }
 }

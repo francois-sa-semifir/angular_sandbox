@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,5 @@ export class ProductDetailsComponent {
 
 // Ici pas besoin de fioritures !
 // On veut juste récupérer les datas
-  @Input()
-  product!: any;
+  readonly product = input.required<any>();
 }

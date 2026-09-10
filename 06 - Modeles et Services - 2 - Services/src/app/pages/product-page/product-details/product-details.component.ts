@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -15,7 +15,6 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ProductDetailsComponent {
 
-  @Input()
-  product!: any;
+  readonly product = input.required<any>();
 
 }

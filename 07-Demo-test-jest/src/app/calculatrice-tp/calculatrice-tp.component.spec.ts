@@ -37,14 +37,14 @@ describe('CalculatriceTPComponent', () => {
       component.add('1++1');
       expect(() => {
         component.calculate();
-      }).toThrow;
+      }).toThrow();
     });
 
     it('Je met deux - successifs, alors il y a une erreur', () => {
       component.add('1--1');
       expect(() => {
         component.calculate();
-      }).toThrow;
+      }).toThrow();
     });
 
 
@@ -52,14 +52,14 @@ describe('CalculatriceTPComponent', () => {
       component.add('1**1');
       expect(() => {
         component.calculate();
-      }).toThrow;
+      }).toThrow();
     });
 
     it('Je met deux / successifs, alors il y a une erreur', () => {
       component.add('1//1');
       expect(() => {
         component.calculate();
-      }).toThrow;
+      }).toThrow();
     });
 
     it('Je ne met qu\'un seul +, alors un seul + est ajouté)', () => {
@@ -121,7 +121,7 @@ describe('CalculatriceTPComponent', () => {
       component.add('01+1');
       expect(() => {
         component.calculate();
-      }).toThrow
+      }).toThrow();
     });
   })
 });

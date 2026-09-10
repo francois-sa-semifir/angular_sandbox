@@ -22,29 +22,24 @@
 <br>
 
 <div class="form">
-  <!-- Ajout du formulaire et déclaration du groupe + submit -->
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <!-- Signal Forms : (submit) remplace (ngSubmit), plus de [formGroup] -->
+  <form (submit)="onSubmit(); $event.preventDefault()">
     
     <div class="field">
       <label for="nom" class="label">Nom : </label>
+      <!-- [formField] remplace formControlName -->
       <input
         type="text"
         id="nom"
-        formControlName="nom"
+        [formField]="userForm.nom"
         placeholder="Nom"
       />
-      <!-- Message conditionnel à afficher : -->
-      @if (submitted && form['nom'].invalid) {
+      <!-- Affichage des erreurs via errors() — un tableau de { kind, message } -->
+      <!-- Plus besoin de hasError('minlength') : chaque erreur a son message dédié -->
+      @if (submitted && userForm.nom().invalid()) {
         <span>
-          @if (form['nom'].hasError('minlength')) {
-            <span>
-              * Nom doit contenir au minimum 2 caractères
-            </span>
-          }
-          @else if (!form['nom'].value) {
-            <span>
-              * Nom obligatoire
-            </span>
+          @for (error of userForm.nom().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
@@ -55,20 +50,13 @@
       <input
         type="text"
         id="prenom"
-        formControlName="prenom"
+        [formField]="userForm.prenom"
         placeholder="Prenom"
       />
-      @if (submitted && form['prenom'].invalid) {
+      @if (submitted && userForm.prenom().invalid()) {
         <span>
-          @if (form['prenom'].hasError('minlength')) {
-            <span>
-              * Prénom doit contenir au minimum 2 caractères
-            </span>
-          }
-          @if (!form['prenom'].value) {
-            <span>
-              * Prénom obligatoire
-            </span>
+          @for (error of userForm.prenom().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
@@ -79,20 +67,13 @@
       <input
         type="text"
         id="entreprise"
-        formControlName="entreprise"
+        [formField]="userForm.entreprise"
         placeholder="Entreprise"
       />
-      @if (submitted && form['entreprise'].invalid) {
+      @if (submitted && userForm.entreprise().invalid()) {
         <span>
-          @if (form['entreprise'].hasError('minlength')) {
-            <span>
-              * Entreprise doit contenir au minimum 2 caractères
-            </span>
-          }
-          @if (!form['entreprise'].value) {
-            <span>
-              * Entreprise obligatoire
-            </span>
+          @for (error of userForm.entreprise().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
@@ -103,20 +84,13 @@
       <input
         type="email"
         id="email"
-        formControlName="email"
+        [formField]="userForm.email"
         placeholder="Email"
       />
-      @if (submitted && form['email'].invalid) {
+      @if (submitted && userForm.email().invalid()) {
         <span>
-          @if (form['email'].hasError('email')) {
-            <span>
-              * Email invalide
-            </span>
-          }
-          @if (!form['email'].value) {
-            <span>
-              * Email obligatoire
-            </span>
+          @for (error of userForm.email().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
@@ -127,20 +101,13 @@
       <input
         type="tel"
         id="telephone"
-        formControlName="telephone"
+        [formField]="userForm.telephone"
         placeholder="Téléphone"
       />
-      @if (submitted && form['telephone'].invalid) {
+      @if (submitted && userForm.telephone().invalid()) {
         <span>
-          @if (form['telephone'].hasError('minlength')) {
-            <span>
-              * Telephone doit contenir au moins 10 chiffres
-            </span>
-          }
-          @if (!form['telephone'].value) {
-            <span>
-              * Téléphone obligatoire
-            </span>
+          @for (error of userForm.telephone().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }

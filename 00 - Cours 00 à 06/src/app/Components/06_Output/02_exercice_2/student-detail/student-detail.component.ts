@@ -1,15 +1,16 @@
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, input } from '@angular/core';
+// Import des pipes pour le formatage dans le template
+import { DatePipe, UpperCasePipe } from '@angular/common';
 import type { Student } from '../student-list/student-list.component';
 
 @Component({
     selector: 'student-detail',
-    imports: [CommonModule],
+    imports: [DatePipe, UpperCasePipe],
     templateUrl: './student-detail.component.html',
-    styleUrls: ['./student-detail.component.css']
+    styleUrl: './student-detail.component.css'
 })
 export class StudentDetailComponent {
   
   // Reçoit les détails de l'étudiant depuis le parent (StudentMainComponent)
-  @Input() student: Student | null = null;
+  readonly student = input<Student | null>(null);
 }

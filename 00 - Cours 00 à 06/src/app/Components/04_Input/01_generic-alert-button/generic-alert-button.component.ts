@@ -1,5 +1,5 @@
-// Import du décorateur @Input()
-import { Component, Input } from '@angular/core';
+// Import de la fonction input() pour déclarer des inputs
+import { Component, input } from '@angular/core';
 @Component({
     selector: 'app-generic-alert-button',
     imports: [],
@@ -8,14 +8,12 @@ import { Component, Input } from '@angular/core';
 })
 export class GenericAlertButtonComponent {
   // Input pour récupérer le titre du boutton
-  @Input()
-  buttonTitle!: string;
+  readonly buttonTitle = input.required<string>();
   // Input pour récupérer le message à afficher
-  @Input()
-  alertMessage!: string;
+  readonly alertMessage = input.required<string>();
   onClick() {
       // Nous utilisons le mot clef 'this' pour accéder aux propriétés du composant
       // En effet, il s'agit bien de la propriété du composant et non d'un paramètre qu'on lui passerait
-    alert(this.alertMessage);
+    alert(this.alertMessage());
   }
 }

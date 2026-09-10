@@ -1,17 +1,17 @@
 <h2>📚 Liste des étudiants</h2>
 
-@if (students.length === 0) {
+@if (students().length === 0) {
   <p>Aucun étudiant à afficher</p>
 }
 
 <ul>
-  @for (student of students; track $index) {
+  @for (student of students(); track $index) {
     <li>
       <strong>{{ student.name | uppercase }}</strong> - 
       {{ student.age }} ans - 
       Inscrit le {{ student.enrollmentDate | date: 'dd/MM/yyyy' }}
       <button (click)="viewDetail(student)">Détails</button>
-      <button (click)="deleteStudent(students.indexOf(student))">❌ Supprimer</button>
+      <button (click)="deleteStudent(students().indexOf(student))">❌ Supprimer</button>
     </li>
   }
 </ul>

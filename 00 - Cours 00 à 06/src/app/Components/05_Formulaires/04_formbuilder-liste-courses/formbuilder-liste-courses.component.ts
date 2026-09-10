@@ -1,70 +1,68 @@
-// Import du module
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormGroup, Validators, FormBuilder } from '@angular/forms';
+// Import des outils Angular
+import { Component, signal } from '@angular/core';
+// Import des APIs Signal Forms d'Angular 22
+// form() : crée un formulaire signal
+// FormField : directive [formField] pour le template
+// required : validateur intégré
+import { form, FormField, required } from '@angular/forms/signals';
+
+// Interface typée pour un article
+interface Article {
+  designation: string;
+  prix: number;
+}
 
 @Component({
     selector: 'app-formbuilder-liste-courses',
-    imports: [ReactiveFormsModule],
+    // FormField remplace ReactiveFormsModule
+    // Plus besoin de FormBuilder : form() fait tout !
+    imports: [FormField],
     templateUrl: './formbuilder-liste-courses.component.html',
     styleUrl: './formbuilder-liste-courses.component.css'
 })
-
 export class FormbuilderListeCoursesComponent {
 
-  // Déclaration du FormGroup
-  article: FormGroup;
+  // Signal = modèle de données réactif
+  articleModel = signal<Article>({ designation: '', prix: 0 });
 
-  // Ajout d'un booléen pour vérifier si le formulaire est soumis
-  submitted: boolean = false;
+  // form() avec schéma de validation
+  // Ceci remplace entièrement le pattern :
+  //   constructor(private formBuilder: FormBuilder) {
+  //     this.article = this.formBuilder.group({ ... })
+  //   }
+  // Le FormBuilder n'existe plus dans le monde Signal Forms !
+  articleForm = form(this.articleModel, (schemaPath) => {
+    required(schemaPath.designation, { message: 'Nom invalide' });
+    required(schemaPath.prix, { message: 'Prix invalide' });
+  });
 
-  // Déclaration de la liste des articles
-  articles: any[] = [];
+  // Booléen pour le suivi de soumission
+  submitted = false;
 
-  // Déclaration du formbuilder dans le constructeur
-  // On rappelle la variable qu'on a déclaré dans le constructeur
-  // On ajoute la méthode '.group()
-  constructor(private formBuilder: FormBuilder) {
-    this.article=this.formBuilder.group({
-      // On déclare les champs du formulaire
-      // Pas besoin de générer de FormControls
-      // On précise aussi les validations
-      designation: ['', Validators.required],
-      prix: ['', Validators.required],
-    });
+  // Liste des articles
+  articles: Article[] = [];
+
+  // Méthode privée pour ajouter et réinitialiser
+  private addArticle() {
+    this.articles.push({ ...this.articleModel() });
+    this.articleModel.set({ designation: '', prix: 0 });
+    this.submitted = false;
   }
 
-  // Déclaration d'une méthode pour ajouter les articles
-  // Elle est privée et sera appelée par la méthode onSubmit
-  private addArticle() {
-    // Push du formulaire dans la liste
-    this.articles.push(this.article.value);
-    // Reset du formulaire
-    this.article.reset();
-    // On repasse submitted à false
-    this.submitted = false;
-}
-
-  // Méthode onSubmit pour gérer la soumission
+  // Gestion de la soumission avec validation
   onSubmit(): boolean {
     this.submitted = true;
-    // Appel du validateur 'invalid' pour vérifier
-    if (this.article.invalid) {
+    // articleForm().invalid() remplace this.article.invalid
+    if (this.articleForm().invalid()) {
       return false;
     } else {
-      // Si le formulaire est valide, on appelle la méthode addArticle
       this.addArticle();
       return true;
     }
   }
 
-  // Définition d'un getter pour pouvoir afficher le prix total
+  // Getter pour le prix total
   get totalPrice(): number {
     return this.articles.reduce((total, article) => total + article.prix, 0);
-  }
-
-  // Pour nous faciliter la vie, on déclare un getter
-  get form() {
-    // Il retournera notre formControl
-    return this.article.controls;
   }
 }

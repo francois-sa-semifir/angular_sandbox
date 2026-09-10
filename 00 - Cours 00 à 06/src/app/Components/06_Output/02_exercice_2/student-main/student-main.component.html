@@ -1,21 +1,32 @@
 <div class="container">
   <h1>📘 Ajouter un étudiant</h1>
 
-  <!-- Formulaire réactif -->
-  <form [formGroup]="studentForm" (ngSubmit)="addStudent()">
-    <input formControlName="name" placeholder="Nom" />
-    @if (studentForm.controls['name'].invalid && studentForm.controls['name'].touched) {
-      <small>Le nom est obligatoire et doit comporter au moins 3 caractères.</small>
+  <!-- Signal Forms : (submit) remplace (ngSubmit), plus de [formGroup] -->
+  <form (submit)="addStudent(); $event.preventDefault()">
+    <!-- [formField] remplace formControlName -->
+    <input [formField]="studentForm.name" placeholder="Nom" />
+    <!-- Affichage des erreurs via touched() et invalid() -->
+    @if (studentForm.name().invalid() && studentForm.name().touched()) {
+      <small>
+        @for (error of studentForm.name().errors(); track error) {
+          {{ error.message }}
+        }
+      </small>
     }
 
-    <input type="number" formControlName="age" placeholder="Âge" />
-    @if (studentForm.controls['age'].invalid && studentForm.controls['age'].touched) {
-      <small>L'âge doit être supérieur ou égal à 18.</small>
+    <input type="number" [formField]="studentForm.age" placeholder="Âge" />
+    @if (studentForm.age().invalid() && studentForm.age().touched()) {
+      <small>
+        @for (error of studentForm.age().errors(); track error) {
+          {{ error.message }}
+        }
+      </small>
     }
 
-    <input type="date" formControlName="enrollmentDate" />
+    <input type="date" [formField]="studentForm.enrollmentDate" />
 
-    <button type="submit" [disabled]="studentForm.invalid">Ajouter</button>
+    <!-- valid() est un signal réactif -->
+    <button type="submit" [disabled]="studentForm().invalid()">Ajouter</button>
   </form>
 
   <app-student-list

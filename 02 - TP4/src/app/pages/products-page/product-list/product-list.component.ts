@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 // Import de notre composant enfant : `product-card.component.ts`
 import { ProductCardComponent } from '../product-card/product-card.component'
 @Component({
@@ -10,7 +10,6 @@ import { ProductCardComponent } from '../product-card/product-card.component'
 export class ProductListComponent {
 
   // Création d'un input pour récupérer les objets passés par le composant parent
-  @Input()
-  products: any[] = []
+  readonly products = input<any[]>([]);
 
 }

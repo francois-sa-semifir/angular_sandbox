@@ -1,4 +1,4 @@
-<ul >
+<ul>
     <!-- Affiche tous les articles au fur et à mesure -->
     @for (article of articles; track article) {
     <li>{{article.designation}} : {{article.prix}} €</li>
@@ -8,16 +8,18 @@
 <!-- Appel de notre getter pour afficher le total -->
 <p>Total : {{totalPrice}}€</p>
 
-<!-- Début du formulaire. On déclare le formgroup et l'action à réaliser -->
-<form [formGroup]="article" (ngSubmit)="addArticle()">
+<!-- Signal Forms : on utilise (submit) au lieu de (ngSubmit) -->
+<!-- Plus besoin de [formGroup] — le binding est fait via [formField] sur chaque input -->
+<form (submit)="addArticle(); $event.preventDefault()">
     <label>
         Désignation :
-        <!-- On déclare nos formcontrols dans les input -->
-        <input type="text" formControlName="designation" />
+        <!-- [formField] remplace formControlName : binding bidirectionnel automatique -->
+        <input type="text" [formField]="articleForm.designation" />
     </label>
     <label>
         Prix :
-        <input type="number" formControlName="prix" />
+        <!-- type="number" + [formField] : conversion string→number automatique -->
+        <input type="number" [formField]="articleForm.prix" />
     </label>
     <!-- On oublie pas d'ajouter un bouton submit -->
     <button type="submit">Ajouter</button>

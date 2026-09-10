@@ -16,7 +16,6 @@ export class CalculatriceTPComponent {
 
   /**
    * Permet de calculer le résultat
-   * @param input v de caractère à calculer
    * @returns résultat du calcul
    */
   public calculate(): number {
@@ -40,15 +39,33 @@ export class CalculatriceTPComponent {
     this.input += input;
   }
 
+  // Vérification de l'intégrité de l'expression avant le calcul
   private checkIntegrity(): void {
     this.chekDotNumber();
+    this.checkConsecutiveOperators();
+    this.checkLeadingZero();
   }
 
+  // Vérifie qu'il n'y a pas de double point dans un nombre
   private chekDotNumber(): void {
     if (this.input.includes('..')) {
       throw new Error('Nombre invalide');
-    } else {
-      this.input = this.input;
+    }
+  }
+
+  // Vérifie qu'il n'y a pas d'opérateurs consécutifs (++, --, **, //)
+  private checkConsecutiveOperators(): void {
+    const consecutiveOps = /[+\-*/]{2,}/;
+    if (consecutiveOps.test(this.input)) {
+      throw new Error('Opérateurs consécutifs');
+    }
+  }
+
+  // Vérifie qu'un nombre ne commence pas par 0 (ex: 01+1)
+  private checkLeadingZero(): void {
+    const leadingZero = /(^|[+\-*/])0\d/;
+    if (leadingZero.test(this.input)) {
+      throw new Error('Nombre invalide : 0 en tête');
     }
   }
 }

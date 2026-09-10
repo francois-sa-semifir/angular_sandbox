@@ -1,23 +1,42 @@
 @for (article of articles; track article) {
-    <ul >
+    <ul>
         <li>{{article.designation}} : {{article.prix}} €</li>
     </ul>
 }
 
 <p>Total : {{totalPrice}} €</p>
 
-<form [formGroup]="article" (ngSubmit)="addArticle()">
+<!-- Signal Forms : (submit) remplace (ngSubmit), plus de [formGroup] -->
+<form (submit)="addArticle(); $event.preventDefault()">
     <label>
-        Désignation :  
-        <input type="text" formControlName="designation" />
+        Désignation :
+        <!-- [formField] remplace formControlName -->
+        <input type="text" [formField]="articleForm.designation" />
     </label>
+    <!-- Affichage conditionnel des erreurs de validation -->
+    <!-- touched() vérifie si l'utilisateur a interagi avec le champ -->
+    <!-- invalid() vérifie si la validation échoue -->
+    @if (articleForm.designation().touched() && articleForm.designation().invalid()) {
+        <div class="error">
+            @for (error of articleForm.designation().errors(); track error) {
+                <span>{{ error.message }}</span>
+            }
+        </div>
+    }
     <label>
         Prix :
-        <input type="number" formControlName="prix" />
+        <input type="number" [formField]="articleForm.prix" />
     </label>
+    @if (articleForm.prix().touched() && articleForm.prix().invalid()) {
+        <div class="error">
+            @for (error of articleForm.prix().errors(); track error) {
+                <span>{{ error.message }}</span>
+            }
+        </div>
+    }
     <div>
-        <!-- Modification du bouton Sumbit
-        qui sera désactivé si le formulaire n'est pas valide -->
-        <button type="submit" [disabled]="!article.valid">Ajouter</button>
+        <!-- Le bouton est désactivé tant que le formulaire n'est pas valide -->
+        <!-- articleForm().valid() remplace article.valid -->
+        <button type="submit" [disabled]="!articleForm().valid()">Ajouter</button>
     </div>
 </form>

@@ -1,6 +1,6 @@
 // Idem que tout à l'heure
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // Sauf qu'ici, on importe notre modèle Album
@@ -13,7 +13,9 @@ export class AlbumService {
 
   private apiUrl = 'http://localhost:3000';
 
-  constructor(private httpClient: HttpClient) {}
+  // inject() remplace le constructeur DI
+  // Plus besoin de : constructor(private httpClient: HttpClient) { }
+  private httpClient = inject(HttpClient);
 
   getAlbums(): Observable<Album[]> {
     return this.httpClient.get<Album[]>(`${this.apiUrl}/albums`);

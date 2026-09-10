@@ -1,42 +1,49 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup} from '@angular/forms';
+// Import des outils Angular : Component pour créer le composant, signal pour la réactivité
+import { Component, signal } from '@angular/core';
+// Import des APIs Signal Forms d'Angular 22
+// form() : crée un formulaire signal à partir d'un modèle signal
+// FormField : directive pour binder un champ HTML au formulaire signal
+import { form, FormField } from '@angular/forms/signals';
+
+// Interface typant notre article — contrairement à Reactive Forms,
+// on définit un vrai type TypeScript, pas un FormGroup générique
+interface Article {
+  designation: string;
+  prix: number;
+}
 
 @Component({
     selector: 'app-reactive-liste-courses',
-    imports: [ReactiveFormsModule],
+    // FormField remplace ReactiveFormsModule
+    // Plus besoin de ReactiveFormsModule ni de FormsModule
+    imports: [FormField],
     templateUrl: './reactive-liste-courses.component.html',
     styleUrl: './reactive-liste-courses.component.css'
 })
 export class ReactiveListeCoursesComponent {
 
-  // Définition des variables
+  // Le signal EST le modèle de données — c'est la source de vérité unique
+  // Toute modification du formulaire met à jour ce signal automatiquement
+  articleModel = signal<Article>({ designation: '', prix: 0 });
 
-  // Article est déclaré en tant que FormGroup
-  article: FormGroup
-  // Articles est la liste des articles, qui contiendra des articles
-  // Puisque nous n'avons pas de 'model', on le type en any pour le moment
-  articles: any[] = []
+  // form() crée un arbre réactif (FieldTree) à partir du signal
+  // Chaque propriété de l'interface devient un nœud accessible :
+  //   articleForm.designation → le champ désignation
+  //   articleForm.prix → le champ prix
+  articleForm = form(this.articleModel);
 
-  constructor() {
-    // Dans le constructeur, on ajoute notre formgroup qui contiendra nos formcontrols
-    // C'est un peu comme déclarer un objet !
-    this.article = new FormGroup({
-      // Article contient un attribut désignation et un attribut prix
-      designation: new FormControl(''),
-      prix: new FormControl('')
-    });
-  }
+  // La liste des articles ajoutés
+  articles: Article[] = [];
 
-  // On ajoute une méthode qui permet d'ajouter un article
-  // On l'ajoutera coté html sur l'évent 'submit'
+  // Ajoute l'article courant à la liste
   addArticle() {
-    // Ajoute l'article à la liste
-    this.articles.push(this.article.value);
-    // Vide le formulaire
-    this.article.reset();
+    // articleModel() retourne la valeur actuelle du signal
+    this.articles.push({ ...this.articleModel() });
+    // On réinitialise le modèle — le formulaire se vide automatiquement
+    this.articleModel.set({ designation: '', prix: 0 });
   }
 
-  // Définition d'un getter pour pouvoir afficher le prix total
+  // Getter pour le prix total — Angular détecte le changement via les signaux
   get totalPrice(): number {
     return this.articles.reduce((total, article) => total + article.prix, 0);
   }

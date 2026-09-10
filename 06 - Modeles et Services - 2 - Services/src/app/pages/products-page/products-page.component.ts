@@ -1,5 +1,5 @@
-// Import du OnInit
-import { Component, OnInit } from '@angular/core';
+// Import du inject et resource — plus besoin de OnInit ni de constructor DI
+import { Component, inject, resource } from '@angular/core';
 import { ProductListComponent } from './product-list/product-list.component'
 // Import de nos modèles de données
 import Film from '../../models/film.model';
@@ -7,6 +7,8 @@ import Album from '../../models/album.model';
 // Import de nos services
 import { FilmService } from '../../services/film.service';
 import { AlbumService } from '../../services/album.service';
+// Import de firstValueFrom pour convertir Observable → Promise
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-products-page',
@@ -14,36 +16,35 @@ import { AlbumService } from '../../services/album.service';
     templateUrl: './products-page.component.html',
     styleUrl: './products-page.component.css'
 })
-// Implémentation du OnInit
-export class ProductsPageComponent implements OnInit{
+// Plus besoin d'implémenter OnInit : resource() gère le chargement automatiquement
+export class ProductsPageComponent {
 
-  // Déclaration de la liste des films
-  // On ajoute un attribu films, qui contiendra un tableau d'objets de type Film
-  films: Film[] = []
+  // inject() remplace le constructeur DI
+  // On injecte nos services directement dans les propriétés
+  private filmService = inject(FilmService);
+  private albumService = inject(AlbumService);
 
-  // Déclaration de la liste des albums
-  // La même qu'au dessus mais pour les albums
-  albums: Album[] = []
+  // resource() remplace ngOnInit + .subscribe()
+  // Le loader retourne une Promise (via firstValueFrom qui convertit l'Observable)
+  // resource() gère automatiquement le cycle de vie : chargement, erreur, annulation
+  filmsResource = resource<Film[], void>({
+    loader: async () => firstValueFrom(this.filmService.getFilms()),
+    defaultValue: [],
+  });
 
-  // Dans le constructeur, on ajout nos dépendences
-  // Ici, ce sera nos services
-  constructor(
-    private filmService: FilmService,
-    private albumService: AlbumService
-  ) {}
+  // Pareil pour les albums
+  albumsResource = resource<Album[], void>({
+    loader: async () => firstValueFrom(this.albumService.getAlbums()),
+    defaultValue: [],
+  });
 
-  // Dans le ngOnInit, on va créer notre souscription
-  // ngOninit est un hook qui est appelé lorsque le composant est créé
-  // Il est appelé une fois, et c'est là où on va créer notre souscription
-  ngOnInit(): void {
-    // On récupère les films : on utilise la méthode getFilms() de notre service
-    // On ajoute notre souscription, et on affecte le résultat à notre tableau films
-    this.filmService.getFilms().subscribe((films) => {
-      this.films = films;
-    });
-    // On récupère les albums : On fait tout pareil !
-    this.albumService.getAlbums().subscribe((albums) => {
-      this.albums = albums;
-    });
+  // Accès aux données via .value() — c'est un signal !
+  // On expose des getters pour garder une API simple dans le template
+  get films(): Film[] {
+    return this.filmsResource.value();
+  }
+
+  get albums(): Album[] {
+    return this.albumsResource.value();
   }
 }

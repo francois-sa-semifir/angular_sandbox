@@ -1,25 +1,32 @@
 <div>
   <ul>
       @for (article of articles; track article) {
-        <li>{{ article.designation }} : {{ article.prix }} </li>
+        <li>{{ article.designation }} : {{ article.prix }} €</li>
       }
   </ul>
   <p>Total : {{totalPrice}} €</p>
 </div>
 
-<form [formGroup]="article" (ngSubmit)="onSubmit()">
+<!-- Signal Forms : (submit) remplace (ngSubmit), plus de [formGroup] -->
+<form (submit)="onSubmit(); $event.preventDefault()">
   <label> Désignation : </label>
-  <input type="text" formControlName="designation" />
-    @if (submitted && !form['designation'].valid) {
+  <!-- [formField] remplace formControlName -->
+  <input type="text" [formField]="articleForm.designation" />
+    <!-- Affichage des erreurs via les signaux touched() et invalid() -->
+    @if (submitted && articleForm.designation().invalid()) {
       <span>
-        * Nom invalide
+        @for (error of articleForm.designation().errors(); track error) {
+          * {{ error.message }}
+        }
       </span>
       }
   <label> Prix : </label>
-  <input type="number" formControlName="prix" />
-    @if (submitted && !form['prix'].valid) {
+  <input type="number" [formField]="articleForm.prix" />
+    @if (submitted && articleForm.prix().invalid()) {
       <span>
-        * Prix invalide
+        @for (error of articleForm.prix().errors(); track error) {
+          * {{ error.message }}
+        }
       </span>
     }
   <div>

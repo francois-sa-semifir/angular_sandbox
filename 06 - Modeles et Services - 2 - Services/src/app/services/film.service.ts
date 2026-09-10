@@ -1,6 +1,6 @@
 // Import des modules nécessaires
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // Import de l'interface Film.
@@ -11,13 +11,13 @@ import Film from '../models/film.model';
 })
 export class FilmService {
 
-  // Déclaration de l'URL vers notre API, pour ne pas avoir à la rappeller à chaque fois.
+  // Déclaration de l'URL vers notre API, pour ne pas avoir à la rappeler à chaque fois.
   // Idéalement, on devrait la placer en tant que variable d'environnement. On verra ça plus tard
   private apiUrl = 'http://localhost:3000';
 
-
-  // Injection de la dépendence HttpClient
-  constructor(private httpClient: HttpClient) { }
+  // inject() remplace le constructeur DI
+  // Plus besoin de : constructor(private httpClient: HttpClient) { }
+  private httpClient = inject(HttpClient);
 
   // Création des différentes routes vers notre API
   // On déclare le type de l'observable comme étant un tableau de Film

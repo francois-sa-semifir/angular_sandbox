@@ -1,19 +1,25 @@
 <!-- Le formulaire est quasi identique à celui déjà réalisé dans la démo sur les validators -->
 <!-- On a juste enlevé l'affichage, qui sera à la charge du parent -->
 <div>
-  <form [formGroup]="article" (ngSubmit)="onSubmit()">
+  <!-- Signal Forms : (submit) remplace (ngSubmit), plus de [formGroup] -->
+  <form (submit)="onSubmit(); $event.preventDefault()">
       <label> Désignation : </label>
-      <input type="text" formControlName="designation" />
-      @if (submitted && !form['designation'].valid) {
+      <!-- [formField] remplace formControlName -->
+      <input type="text" [formField]="articleForm.designation" />
+      @if (submitted && articleForm.designation().invalid()) {
         <span>
-          * Nom invalide
+          @for (error of articleForm.designation().errors(); track error) {
+            * {{ error.message }}
+          }
         </span>
       }
       <label> Prix : </label>
-      <input type="number" formControlName="prix" />
-      @if (submitted && !form['prix'].valid) {
+      <input type="number" [formField]="articleForm.prix" />
+      @if (submitted && articleForm.prix().invalid()) {
         <span>
-          * Prix invalide
+          @for (error of articleForm.prix().errors(); track error) {
+            * {{ error.message }}
+          }
         </span>
       }
     <div>

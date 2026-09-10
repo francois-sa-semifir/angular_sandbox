@@ -1,5 +1,5 @@
 @for (user of users; track user) {
-  <div class="'container">
+  <div class="container">
     <div class="background">
       <div class="card-header">
         {{ user.entreprise }}
@@ -10,12 +10,9 @@
           </div>
           <div class="info">
             <p>email : {{ user.email }}</p>
-            @if (user.telephone) {
-              <p>Tel : {{ user.telephone }}</p>
-            } @else {
-              @for (telephone of user.telephones; track i; let i = $index) {
-                <p>Tel : {{ telephone }}</p>
-              }
+            <!-- Affichage des téléphones depuis le tableau -->
+            @for (telephone of user.telephones; track telephone; let i = $index) {
+              <p>Tel : {{ telephone }}</p>
             }
           </div>
         </div>
@@ -27,26 +24,20 @@
 <br>
 
 <div class="form">
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <!-- Signal Forms : plus de [formGroup] ni de (ngSubmit) -->
+  <form (submit)="onSubmit(); $event.preventDefault()">
     <div class="field">
       <label for="nom" class="label">Nom : </label>
       <input
         type="text"
         id="nom"
-        formControlName="nom"
+        [formField]="userForm.nom"
         placeholder="Nom"
       />
-      @if (submitted && form['nom'].invalid) {
+      @if (submitted && userForm.nom().invalid()) {
         <span>
-          @if (form['nom'].hasError('minlength')) {
-            <span>
-              * Nom doit contenir au minimum 2 caractères
-            </span>
-          }
-          @if (!form['nom'].value) {
-            <span>
-              * Nom obligatoire
-            </span>
+          @for (error of userForm.nom().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
@@ -57,20 +48,13 @@
       <input
         type="text"
         id="prenom"
-        formControlName="prenom"
+        [formField]="userForm.prenom"
         placeholder="Prenom"
       />
-      @if (submitted && form['prenom'].invalid) {
+      @if (submitted && userForm.prenom().invalid()) {
         <span>
-          @if (form['prenom'].hasError('minlength')) {
-            <span>
-              * Prénom doit contenir au minimum 2 caractères
-            </span>
-          }
-          @if (!form['prenom'].value) {
-            <span>
-              * Prénom obligatoire
-            </span>
+          @for (error of userForm.prenom().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
@@ -81,20 +65,13 @@
       <input
         type="text"
         id="entreprise"
-        formControlName="entreprise"
+        [formField]="userForm.entreprise"
         placeholder="Entreprise"
       />
-      @if (submitted && form['entreprise'].invalid) {
+      @if (submitted && userForm.entreprise().invalid()) {
         <span>
-          @if (form['entreprise'].hasError('minlength')) {
-            <span>
-              * Entreprise doit contenir au minimum 2 caractères
-            </span>
-          }
-          @if (!form['entreprise'].value) {
-            <span>
-              * Entreprise obligatoire
-            </span>
+          @for (error of userForm.entreprise().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
@@ -105,60 +82,37 @@
       <input
         type="email"
         id="email"
-        formControlName="email"
+        [formField]="userForm.email"
         placeholder="Email"
       />
-      @if (submitted && form['email'].invalid) {
+      @if (submitted && userForm.email().invalid()) {
         <span>
-          @if (form['email'].hasError('email')) {
-            <span>
-              * Email invalide
-            </span>
-          }
-          @if (!form['email'].value) {
-            <span>
-              * Email obligatoire
-            </span>
+          @for (error of userForm.email().errors(); track error) {
+            <span>* {{ error.message }}</span>
           }
         </span>
       }
     </div>
-  
-    <div formArrayName="telephones">
-      <!-- On indique qu'on va vouloir ajouter un champ par contrôle de téléphones-->
-      @for (telephone of telephones.controls; track telephone; let i = $index) {
+
+    <!-- Tableau de téléphones : en Signal Forms, on itère sur le signal directement -->
+    <!-- Plus besoin de formArrayName ni de [formControlName]="i" -->
+    <div>
+      @for (telephone of userModel().telephones; track $index; let i = $index) {
         <div class="field">
-          <label for="telephone" class="label">Telephone : </label>
-          <!-- On utilise le property binding pour faire la liaison entre le champ et le téléphone -->
-          <!-- [formControlName]="i" : On lui passe l'index du champs pour qu'il puisse faire le lien -->
+          <label for="telephone-{{i}}" class="label">Telephone {{i + 1}} : </label>
+          <!-- On binde chaque élément du tableau via userForm.telephones[i] -->
           <input
             type="tel"
-            id="telephone"
-            [formControlName]="i"
+            id="telephone-{{i}}"
+            [formField]="userForm.telephones[i]"
             placeholder="Telephone"
           />
-          
-          <!-- On laisse les conditions  -->
-          @if (submitted && telephone.invalid) {
-            <span>
-              @if (telephone.hasError('minlength')) {
-                <span>
-                  * Telephone doit contenir au moins 10 chiffres
-                </span>
-              }
-              @if (!telephone.value) {
-                <span>
-                  * Téléphone obligatoire
-                </span>
-              }
-            </span>
-          }
         </div>
       }
-      <!-- On ajout à la fin 2 boutons, qui vont chercher nos méthodes d'ajout et de suppression de champ -->
+      <!-- Boutons d'ajout/suppression de téléphone -->
+      <!-- Plus besoin de FormArray.push : on manipule directement le signal -->
       <button type="button" (click)="addTelephone()" class="button">+</button>
-      <!-- On fait attention à bien activer la suppression que si nécessaire ! -->
-      @if (telephones.length > 1) {
+      @if (userModel().telephones.length > 1) {
         <button type="button" (click)="removeTelephone()" class="button">-</button>
       }
     </div>
